@@ -1,11 +1,11 @@
 import { Link } from '@atoms/Links';
-import { Button } from '@mui/material';
 import Box from '@mui/material/Box';
+import Button from '@mui/material/Button';
 import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
 import type { NextPage } from 'next';
 
-const Home: NextPage = () => {
+const About: NextPage = () => {
   return (
     <Container maxWidth="lg">
       <Box
@@ -21,8 +21,8 @@ const Home: NextPage = () => {
           MUI v5 + Next.js with TypeScript example
         </Typography>
         <Box maxWidth="sm">
-          <Button variant="contained" component={Link} noLinkStyle href="/about">
-            Go to the about page
+          <Button variant="contained" component={Link} noLinkStyle href="/">
+            Go to the home page
           </Button>
         </Box>
       </Box>
@@ -30,4 +30,4 @@ const Home: NextPage = () => {
   );
 };
 
-export default Home;
+export default About;
