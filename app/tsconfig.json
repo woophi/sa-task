@@ -24,6 +24,9 @@
       "@atoms/*": [
         "./ui/components/atoms/*"
       ],
+      "@core/*": [
+        "./core/*"
+      ],
     },
   },
   "include": [

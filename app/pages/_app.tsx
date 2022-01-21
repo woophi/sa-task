@@ -5,6 +5,7 @@ import { AppProps } from 'next/app';
 import Head from 'next/head';
 import { createEmotionCache } from 'ui/emotionCache';
 import { theme } from 'ui/theme';
+import '@core/axios-config';
 
 // Client-side cache, shared for the whole session of the user in the browser.
 const clientSideEmotionCache = createEmotionCache();

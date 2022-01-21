@@ -1,11 +1,13 @@
 import { Link } from '@atoms/Links';
+import { getArticlesList } from '@core/operations/articles';
 import { Button } from '@mui/material';
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
-import type { NextPage } from 'next';
+import type { GetServerSideProps, NextPage } from 'next';
 
-const Home: NextPage = () => {
+const Home: NextPage<{ list: any }> = ({ list }) => {
+  // console.debug(list);
   return (
     <Container maxWidth="lg">
       <Box
@@ -28,6 +30,17 @@ const Home: NextPage = () => {
       </Box>
     </Container>
   );
+};
+
+export const getStaticProps: GetServerSideProps = async ({ req }) => {
+  let list: any[] = [];
+  try {
+    list = await getArticlesList(1);
+  } catch {}
+
+  return {
+    props: { list },
+  };
 };
 
 export default Home;
