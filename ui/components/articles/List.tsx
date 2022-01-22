@@ -1,5 +1,17 @@
+import { Link } from '@atoms/Links';
 import { ArticleItem } from '@core/models';
-import { Avatar, List, ListItem, ListItemAvatar, ListItemText, Paper } from '@mui/material';
+import CommentIcon from '@mui/icons-material/Comment';
+import {
+  Avatar,
+  Badge,
+  Box,
+  Button,
+  List,
+  ListItem,
+  ListItemAvatar,
+  ListItemText,
+  Paper,
+} from '@mui/material';
 import { memo, RefObject } from 'react';
 import { stringAvatar } from 'ui/utils';
 
@@ -9,10 +21,9 @@ type Props = {
   articles: ArticleItem[];
 };
 
-// TODO: show comments number and link to article detail
 export const ArticlesList = memo<Props>(({ articles, shoudlSetLastItem, observedItem }) => {
   return (
-    <List sx={{ width: '100%', maxWidth: '65vw', bgcolor: 'background.paper' }}>
+    <List sx={{ width: '100%', maxWidth: '65vw', bgcolor: 'background.paper', minWidth: '320px' }}>
       {articles.map((article, i) => (
         <Paper
           key={article.id}
@@ -20,12 +31,22 @@ export const ArticlesList = memo<Props>(({ articles, shoudlSetLastItem, observed
           elevation={3}
           ref={i === articles.length - 1 && shoudlSetLastItem ? observedItem : undefined}
         >
-          <ListItem alignItems="flex-start">
+          <ListItem alignItems="flex-start" secondaryAction={<></>}>
             <ListItemAvatar>
               <Avatar {...stringAvatar(`${article.author.first_name} ${article.author.last_name}`)} />
             </ListItemAvatar>
-            <ListItemText primary={article.title} secondary={article.preview} />
+            <ListItemText primary={`${article.title} (${article.created_at})`} secondary={article.preview} />
           </ListItem>
+          <Box sx={{ marginLeft: '71px', paddingBottom: '1rem' }}>
+            <Button variant="contained" component={Link} noLinkStyle href="/about">
+              Read more
+            </Button>
+            {article.comments ? (
+              <Badge variant="dot" color="error" sx={{ marginLeft: '1rem' }}>
+                <CommentIcon />
+              </Badge>
+            ) : null}
+          </Box>
         </Paper>
       ))}
     </List>

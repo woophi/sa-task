@@ -1,12 +1,11 @@
 import { Link } from '@atoms/Links';
 import { ArticlesData, getArticlesList } from '@core/operations/articles';
-import { Button, LinearProgress } from '@mui/material';
+import { Button, Fade, LinearProgress } from '@mui/material';
 import Box from '@mui/material/Box';
-import Container from '@mui/material/Container';
-import Typography from '@mui/material/Typography';
 import type { GetServerSideProps, NextPage } from 'next';
 import { useCallback, useMemo, useState } from 'react';
 import { ArticlesList } from 'ui/components/articles/List';
+import { AppLayout } from 'ui/components/layout/AppLayout';
 import { useInView } from 'ui/hooks/useInView';
 
 const Home: NextPage<{ data: ArticlesData }> = ({ data }) => {
@@ -37,7 +36,7 @@ const Home: NextPage<{ data: ArticlesData }> = ({ data }) => {
   const { observedItem } = useInView(onObserveCb, [shoudlSetLastItem]);
 
   return (
-    <Container maxWidth="lg">
+    <AppLayout title="Articles">
       <Box
         sx={{
           my: 4,
@@ -47,22 +46,12 @@ const Home: NextPage<{ data: ArticlesData }> = ({ data }) => {
           alignItems: 'center',
         }}
       >
-        <Typography variant="h4" component="h1" gutterBottom>
-          Articles
-        </Typography>
         <ArticlesList articles={articles} observedItem={observedItem} shoudlSetLastItem={shoudlSetLastItem} />
-        {loading && (
-          <Box sx={{ width: '100%', maxWidth: '65vw', marginBottom: '1rem' }}>
-            <LinearProgress sx={{ borderRadius: '.25rem' }} color="secondary" />
-          </Box>
-        )}
-        <Box maxWidth="sm">
-          <Button variant="contained" component={Link} noLinkStyle href="/about">
-            Go to the about page
-          </Button>
-        </Box>
+        <Fade in={loading}>
+          <LinearProgress sx={{ borderRadius: '.25rem' }} color="secondary" />
+        </Fade>
       </Box>
-    </Container>
+    </AppLayout>
   );
 };
 
