@@ -1,6 +1,5 @@
-import { Link } from '@atoms/Links';
 import { ArticlesData, getArticlesList } from '@core/operations/articles';
-import { Button, Fade, LinearProgress } from '@mui/material';
+import { LinearProgress } from '@mui/material';
 import Box from '@mui/material/Box';
 import type { GetServerSideProps, NextPage } from 'next';
 import { useCallback, useMemo, useState } from 'react';
@@ -47,9 +46,8 @@ const Home: NextPage<{ data: ArticlesData }> = ({ data }) => {
         }}
       >
         <ArticlesList articles={articles} observedItem={observedItem} shoudlSetLastItem={shoudlSetLastItem} />
-        <Fade in={loading}>
-          <LinearProgress sx={{ borderRadius: '.25rem' }} color="secondary" />
-        </Fade>
+
+        {loading && <LinearProgress sx={{ borderRadius: '.25rem' }} color="secondary" />}
       </Box>
     </AppLayout>
   );

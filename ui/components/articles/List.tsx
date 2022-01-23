@@ -38,7 +38,7 @@ export const ArticlesList = memo<Props>(({ articles, shoudlSetLastItem, observed
             <ListItemText primary={`${article.title} (${article.created_at})`} secondary={article.preview} />
           </ListItem>
           <Box sx={{ marginLeft: '71px', paddingBottom: '1rem' }}>
-            <Button variant="contained" component={Link} noLinkStyle href="/about">
+            <Button variant="contained" component={Link} noLinkStyle href={`/article/${article.id}`}>
               Read more
             </Button>
             {article.comments ? (
