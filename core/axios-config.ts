@@ -1,3 +1,3 @@
 import axios from 'axios';
 
-axios.defaults.baseURL = process.env.NEXT_PUBLIC_SERVER_BASE_URL + 'api/proxy-sa';
+axios.defaults.baseURL = 'https://depressed-emo-kid.herokuapp.com/api/proxy-sa';
