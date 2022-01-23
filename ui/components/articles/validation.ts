@@ -1,11 +1,11 @@
 import { CreateCommentModel } from '@core/models';
 
-export type CommnetKeys = keyof CreateCommentModel;
+export type CommentKeys = keyof CreateCommentModel;
 
 export const testEmail =
   /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
-export const validationRules = <T extends CommnetKeys>(key: T) => {
+export const validationRules = <T extends CommentKeys>(key: T) => {
   return {
     email: (value: CreateCommentModel[T]) => !!value && testEmail.test(value),
     message: (value: CreateCommentModel[T]) => !!value && value.length >= 4 && value.length <= 1000,

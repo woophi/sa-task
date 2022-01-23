@@ -3,7 +3,7 @@ import { createComment } from '@core/operations/articles';
 import { Alert, Button, CircularProgress, Paper, SxProps, TextField, Theme, Typography } from '@mui/material';
 import { Box } from '@mui/system';
 import { ChangeEvent, FormEvent, memo, useCallback, useEffect, useMemo, useState } from 'react';
-import { CommnetKeys, inputProps, validationRules } from './validation';
+import { CommentKeys, inputProps, validationRules } from './validation';
 
 const classes: Record<string, SxProps<Theme>> = {
   paper: {
@@ -36,7 +36,7 @@ const defaultValidation = {
 
 export const AddComment = memo<Props>(({ uuid, onCreated }) => {
   const [formData, setData] = useState<CreateCommentModel>(defaultFormData);
-  const [formValidation, setValidation] = useState<Record<CommnetKeys, boolean>>(defaultValidation);
+  const [formValidation, setValidation] = useState<Record<CommentKeys, boolean>>(defaultValidation);
   const [pristine, setPristine] = useState(true);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
@@ -59,7 +59,7 @@ export const AddComment = memo<Props>(({ uuid, onCreated }) => {
 
   const onChange = useCallback((e: ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => {
     setError('');
-    const key = e.target.name as CommnetKeys;
+    const key = e.target.name as CommentKeys;
     setData(d => ({ ...d, [key]: e.target.value }));
   }, []);
 
