@@ -17,7 +17,7 @@ export const options = {
   },
 };
 
-export const shapeData = ({ data }: GraphModel) => ({
+const shapeData = ({ data }: GraphModel) => ({
   labels: data.map(v => v['ID Year']),
   datasets: [
     {
@@ -38,3 +38,5 @@ export const PopulationGraph = () => {
   }, []);
   return <Bar options={options} data={shapeData(data)} />;
 };
+
+export default PopulationGraph;

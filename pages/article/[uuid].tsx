@@ -2,9 +2,11 @@ import { ArticleData, getArticle } from '@core/operations/articles';
 import { Typography } from '@mui/material';
 import Box from '@mui/material/Box';
 import type { GetServerSideProps, NextPage } from 'next';
-import { Comments } from 'ui/components/articles/Comments';
-import { PopulationGraph } from 'ui/components/graphs/Population';
+import dynamic from 'next/dynamic';
 import { AppLayout } from 'ui/components/layout/AppLayout';
+
+const Comments = dynamic(() => import('ui/components/articles/Comments'), { ssr: false });
+const PopulationGraph = dynamic(() => import('ui/components/graphs/Population'), { ssr: false });
 
 const ArticlePage: NextPage<{ data: ArticleData }> = ({ data }) => {
   const { result } = data;

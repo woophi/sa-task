@@ -27,3 +27,5 @@ export const Comments = memo<{ uuid: string }>(({ uuid }) => {
     </Box>
   );
 });
+
+export default Comments;
